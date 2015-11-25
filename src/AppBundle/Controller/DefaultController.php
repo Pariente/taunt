@@ -19,10 +19,25 @@ class DefaultController extends Controller
         return $this->render('homepage.html.twig', ['taunts' => $taunts]);
     }
 
+
+
     /**
      * @Route("/taunt/{id}", name="taunt")
      */
     public function playTauntAction(Request $request, $id)
+    {
+        $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findAll();
+        $tauntToPlay = $this->getDoctrine()->getRepository("AppBundle:Taunt")->find($id);
+        return $this->render('homepage.html.twig', [
+          'taunts' => $taunts,
+          'taunt' => $tauntToPlay
+        ]);
+    }
+
+        /**
+     * @Route("/search/{keyword}", name="search")
+     */
+    public function searchAction(Request $request, $keyword)
     {
         $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findAll();
         $tauntToPlay = $this->getDoctrine()->getRepository("AppBundle:Taunt")->find($id);
