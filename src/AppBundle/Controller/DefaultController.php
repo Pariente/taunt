@@ -15,22 +15,41 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findAll();
-        return $this->render('homepage.html.twig', ['taunts' => $taunts]);
+      $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findAll();
+      return $this->render('homepage.html.twig', ['taunts' => $taunts]);
     }
+
+
 
     /**
      * @Route("/taunt/{id}", name="taunt")
      */
     public function playTauntAction(Request $request, $id)
     {
-        $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findAll();
-        $tauntToPlay = $this->getDoctrine()->getRepository("AppBundle:Taunt")->find($id);
-        return $this->render('homepage.html.twig', [
-          'taunts' => $taunts,
-          'taunt' => $tauntToPlay
+      $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findAll();
+      $tauntToPlay = $this->getDoctrine()->getRepository("AppBundle:Taunt")->find($id);
+      return $this->render('homepage.html.twig', [
+        'taunts' => $taunts,
+        'taunt' => $tauntToPlay
         ]);
     }
+
+        /**
+     * @Route("/search/{keyword}", name="search")
+     */
+        public function searchAction(Request $request, $keyword)
+        {
+          $em = $this->getDoctrine()->getManager();
+          $query = $em->getRepository("AppBundle:Taunt")->createQueryBuilder('t');
+
+          return $this->render('homepage.html.twig', [
+            'taunts' => $query
+          ->where('t.quote LIKE :keyword')
+          ->setParameter('keyword', '%'.$keyword.'%')
+          ->getQuery()
+          ->getResult()
+            ]);
+        }
 
         /**
      * @Route("/new", name="new")
@@ -38,31 +57,31 @@ class DefaultController extends Controller
         public function createAction(Request $request)
         {
 
-            $taunt = new Taunt();
-            $form = $this->createFormBuilder($taunt)
-            ->add('title', 'text',  array('label' => 'Titre'))
-            ->add('ref', 'text',  array('label' => 'Film'))
-            ->add('quote', 'textarea',  array('label' => 'Citation'))
-            ->add('file', 'file', array('label' => 'Fichier'))
-            ->add('submit', 'submit',  array('label' => 'Publier'))
-            ->getForm();
+          $taunt = new Taunt();
+          $form = $this->createFormBuilder($taunt)
+          ->add('title', 'text',  array('label' => 'Titre'))
+          ->add('ref', 'text',  array('label' => 'Film'))
+          ->add('quote', 'textarea',  array('label' => 'Citation'))
+          ->add('file', 'file', array('label' => 'Fichier'))
+          ->add('submit', 'submit',  array('label' => 'Publier'))
+          ->getForm();
 
-            $form->handleRequest($request);
+          $form->handleRequest($request);
 
-            if ($form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
+          if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
 
-                $taunt->upload();
+            $taunt->upload();
 
-                $em->persist($taunt);
-                $em->flush();
+            $em->persist($taunt);
+            $em->flush();
 
-                return $this->redirectToRoute('homepage');
-            }
+            return $this->redirectToRoute('homepage');
+          }
 
-            return $this->render('new.html.twig', array(
-                'form' => $form->createView()
-                )
-            );
+          return $this->render('new.html.twig', array(
+            'form' => $form->createView()
+            )
+          );
         }
-    }
+      }

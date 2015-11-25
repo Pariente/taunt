@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block body %}
+<form action="{{ path('search') }}">
+  
+{{ form_widget(form)}}
+</form>
+
 <div id="wrapper">
   <div id="container">
     <h3 class="text-center">Les r&eacute;pliques les plus classes des films fran&ccedil;ais.</h3>
