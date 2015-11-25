@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Taunt.io - Les meilleures r&eacute;pliques de films
+{% endblock %}
+
+{% block body %}
+<div id="wrapper">
+  <div id="container">
+    <h3 class="text-center">Les r&eacute;pliques les plus classes des films fran&ccedil;ais.</h3>
+    <h3 class="text-center">En PHP, ma gueule.</h3>
+  </div>
+  <div id="results">
+    {% if taunt is defined %}
+    <div class="taunt text-center">
+      <h2>#{{ taunt.title }}</h2>
+      <p>&laquo; {{ taunt.quote }} &raquo;</p>
+      <ul class="taunt-bottom">
+        <li class="taunt-ref">{{ taunt.ref }}</li>
+        <li class="taunt-share">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ftaunt.io%2F%23taunt%2F%23{{ taunt.id }}" target="_blank" class="">
+            <img src="{{ asset('share-white.svg') }}" alt="share" width="30px" height="30px" />
+          </a>
+          <a href="https://twitter.com/share" data-text="YOLO" data-via="Taunt_IO" data-hashtags="taunt" target="_blank">
+            <img src="{{ asset('twitter-white.svg') }}" alt="twitter" width="30px" height="30px" />
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ftaunt.io%2F%23taunt%2F%23{{ taunt.id }}" target="_blank" class="">
+            <img src="{{ asset('facebook-white.svg') }}" alt="facebook" width="30px" height="30px" />
+          </a>
+        </li>
+      </ul>
+    </div>
+      <audio autoplay>
+        <source src="{{ asset('uploads/taunts/'~ taunt.path) }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    {% endif %}
+    <ul class="no-padding taunts-list">
+      {% for taunt in taunts %}
+        {{ include("default/_taunt.html.twig") }}
+      {% endfor %}
+    </ul>
+  </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=883876361667812";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+{% endblock %}

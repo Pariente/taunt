@@ -1,0 +1,10 @@
+/app/cache/*
+!app/cache/.gitkeep
+/app/logs/*
+!app/logs/.gitkeep
+/app/phpunit.xml
+/bin/
+/composer.phar
+/vendor/
+!/vendor/autoload.php
+/web/bundles/

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Taunt.io{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="container">
+        <div id="header-logo">
+          <a href="{{ path('homepage') }}"><h1>Taunt</h1><h2 class="">.io</h2></a>
+        </div>
+        <div id="header-social">
+          <a href="https://twitter.com/Taunt_IO" target="_blank"><img src="{{ asset('twitter.svg') }}" alt="twitter" width="30px" height="30px" /></a>
+          <a href="https://www.facebook.com/taunt.io/" target="_blank"><img src="{{ asset('facebook.svg') }}" alt="facebook" width="30px" height="30px" /></a>
+        </div>
+      </div>
+      {% block body %}{% endblock %}
+      {% block javascripts %}{% endblock %}
+  </body>
+</html>
