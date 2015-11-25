@@ -23,13 +23,10 @@
       <ul class="taunt-bottom">
         <li class="taunt-ref">{{ taunt.ref }}</li>
         <li class="taunt-share">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ftaunt.io%2F%23taunt%2F%23{{ taunt.id }}" target="_blank" class="">
-            <img src="{{ asset('share-white.svg') }}" alt="share" width="30px" height="30px" />
-          </a>
-          <a href="https://twitter.com/share" data-text="YOLO" data-via="Taunt_IO" data-hashtags="taunt" target="_blank">
+          <a data-js="twitter-share" class="share-button">
             <img src="{{ asset('twitter-white.svg') }}" alt="twitter" width="30px" height="30px" />
           </a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ftaunt.io%2F%23taunt%2F%23{{ taunt.id }}" target="_blank" class="">
+          <a data-js="facebook-share" class="share-button">
             <img src="{{ asset('facebook-white.svg') }}" alt="facebook" width="30px" height="30px" />
           </a>
         </li>
@@ -51,13 +48,24 @@
 {% endblock %}
 
 {% block javascripts %}
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=883876361667812";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+{% if taunt is defined %}
+<script>
+  var facebookShare = document.querySelector('[data-js="facebook-share"]');
+
+  facebookShare.onclick = function(e) {
+  e.preventDefault();
+  var facebookWindow = window.open('http://www.facebook.com/sharer/sharer.php?u=https%3A//taunt.io/taunt/{{ taunt.id }}&title=Taunt', 'facebook-popup', 'height=350,width=600');
+  if(facebookWindow.focus) { facebookWindow.focus(); }
+    return false;
+  }
+  var twitterShare = document.querySelector('[data-js="twitter-share"]');
+
+  twitterShare.onclick = function(e) {
+    e.preventDefault();
+    var twitterWindow = window.open('https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Ftaunt.io&url=' + document.URL + '&hashtags=taunt&via=taunt_io&text={{ taunt.title }}%20%2D', 'twitter-popup', 'height=350,width=600');
+    if(twitterWindow.focus) { twitterWindow.focus(); }
+      return false;
+    }
+</script>
+{% endif %}
 {% endblock %}

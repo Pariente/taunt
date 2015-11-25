@@ -5,12 +5,22 @@
     <title>{% block title %}Taunt.io{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <meta property="og:url"           content="http://taunt.io/" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Taunt.io" />
+    <meta property="og:description"   content="Les r&eacute;pliques les plus classes des films fran&ccedil;ais" />
+    <meta property="og:image"         content="https://pbs.twimg.com/profile_images/669090330092937216/in1Cmlg2.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@taunt_io" />
+    <meta name="twitter:title" content="Taunt.io" />
+    <meta name="twitter:description" content="Les r&eacute;pliques les plus classes des films fran&ccedil;ais" />
+    <meta name="twitter:image" content="https://pbs.twimg.com/profile_images/669090330092937216/in1Cmlg2.png" />
   </head>
   <body>
     <div id="wrapper">
       <div id="container">
         <div id="header-logo">
-          <a href="{{ path('homepage') }}"><h1>Taunt</h1><h2 class="">.io</h2></a>
+          <a href="{{ path('homepage') }}"><h1>Taunt</h1><h2 class="io">.io</h2></a>
         </div>
         <div id="header-social">
           <a href="https://twitter.com/Taunt_IO" target="_blank"><img src="{{ asset('twitter.svg') }}" alt="twitter" width="30px" height="30px" /></a>
