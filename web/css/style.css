@@ -44,7 +44,7 @@ h3 {
   font-size: 20px;
   color: #333333;
   letter-spacing: 2.33px;
-  line-height: 27px;
+  line-height: 27px
 }
 
 a {
@@ -142,12 +142,12 @@ a {
 
 .taunt-ref {
   font-family: IntroScript;
-  text-align: left;
+  text-align: left
 }
 
 .taunt-share {
   text-align: right;
-  vertical-align: -10px;
+  vertical-align: -10px
 }
 
 .share-button {
@@ -163,29 +163,29 @@ a {
 }
 
 .inline-block {
-  display: inline-block;
+  display: inline-block
 }
 
 /*** FORMS ***/
 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   color: #aca49c;
-  font-size: 0.875em;
+  font-size: 0.875em
 }
 
 input::-moz-placeholder, textarea::-moz-placeholder {
   color: #aca49c;
-  font-size: 0.875em;
+  font-size: 0.875em
 }
 
 input::placeholder, textarea::placeholder {
   color: #aca49c;
-  font-size: 0.875em;
+  font-size: 0.875em
 }
 
 input::-ms-placeholder, textarea::-ms-placeholder {
   color: #aca49c;
-  font-size: 0.875em;
+  font-size: 0.875em
 }
 
 header {
@@ -193,14 +193,14 @@ header {
   margin: 100px 0 25px 0;
   font-size: 2.3em;
   text-align: center;
-  letter-spacing: 7px;
+  letter-spacing: 7px
 }
 
 #newquote {
   position: relative;
   width: 70%;
   margin: 10px auto;
-  font-size: 1.1em;
+  font-size: 1.1em
 }
 
 input {
@@ -222,7 +222,7 @@ input {
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out
 }
 
 #form_file {
@@ -253,7 +253,7 @@ textarea {
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out
 }
 
 #form_submit {
