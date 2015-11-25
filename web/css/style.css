@@ -69,6 +69,17 @@ a {
   margin: 0.5em 1em 0em 0em
 }
 
+.searchbar {
+  max-width: 400px;
+  margin: auto
+}
+
+.searchbar input {
+  font-size: 20px;
+  border-width: 0px 0px 2px 0px;
+  border-radius: 0px
+}
+
 #results {
   max-width: 800px;
   margin: auto
@@ -108,13 +119,13 @@ a {
 .taunts-list li:nth-child(7n+3) {
   color: #27ae60
 }
-.taunts-list ul li:nth-child(7n+4) {
+.taunts-list li:nth-child(7n+4) {
   color: #f1c40f
 }
-.taunts-list ul li:nth-child(7n+5) {
+.taunts-list li:nth-child(7n+5) {
   color: #34495e
 }
-.taunts-list ul li:nth-child(7n+6) {
+.taunts-list li:nth-child(7n+6) {
   color: #333333
 }
 
@@ -125,7 +136,8 @@ a {
   color: #FFFFFF;
   font-family: AvenirNextCondensed;
   font-size: 18px;
-  padding: 0em 3em
+  padding: 0em 3em;
+  margin-top: 1em
 }
 
 .taunt h2 {

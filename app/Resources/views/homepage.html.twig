@@ -9,6 +9,11 @@
   <div id="container">
     <h3 class="text-center">Les r&eacute;pliques les plus classes des films fran&ccedil;ais.</h3>
     <h3 class="text-center">En PHP, ma gueule.</h3>
+    <div class="searchbar">
+      {{ form_start(form) }}
+      {{ form_widget(form) }}
+      {{ form_end(form) }}
+    </div>
   </div>
   <div id="results">
     {% if taunt is defined %}

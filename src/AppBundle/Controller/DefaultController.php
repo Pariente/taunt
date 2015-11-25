@@ -15,8 +15,19 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-      $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findAll();
-      return $this->render('homepage.html.twig', ['taunts' => $taunts]);
+      $form = $this->createFormBuilder()
+        ->add('Rechercher', 'text', ['label' => false ,'attr' => ['placeholder' => 'Rechercher']])
+        ->getForm();
+      $form->handleRequest($request);
+
+      if ($form->isValid()) {
+        $keyword = $form["Rechercher"]->getData();
+        return $this->redirectToRoute('search', ["keyword" => $keyword]);
+      }
+      else {
+        $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findAll();
+        return $this->render('homepage.html.twig', ['taunts' => $taunts, 'form' => $form->createView()]);
+      }
     }
 
 
@@ -28,10 +39,23 @@ class DefaultController extends Controller
     {
       $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findAll();
       $tauntToPlay = $this->getDoctrine()->getRepository("AppBundle:Taunt")->find($id);
-      return $this->render('homepage.html.twig', [
-        'taunts' => $taunts,
-        'taunt' => $tauntToPlay
-        ]);
+
+      $form = $this->createFormBuilder()
+        ->add('Rechercher', 'text', ['label' => false ,'attr' => ['placeholder' => 'Rechercher']])
+        ->getForm();
+      $form->handleRequest($request);
+
+      if ($form->isValid()) {
+        $keyword = $form["Rechercher"]->getData();
+        return $this->redirectToRoute('search', ["keyword" => $keyword]);
+      }
+      else {
+        $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findAll();
+        return $this->render('homepage.html.twig', [
+          'taunts' => $taunts,
+          'taunt' => $tauntToPlay,
+          'form' => $form->createView()]);
+      }
     }
 
         /**
@@ -39,15 +63,21 @@ class DefaultController extends Controller
      */
         public function searchAction(Request $request, $keyword)
         {
+          $form = $this->createFormBuilder()
+            ->add('Rechercher', 'text', ['label' => false ,'attr' => ['placeholder' => 'Rechercher']])
+            ->getForm();
+
           $em = $this->getDoctrine()->getManager();
           $query = $em->getRepository("AppBundle:Taunt")->createQueryBuilder('t');
 
           return $this->render('homepage.html.twig', [
+            'form' => $form->createView(),
             'taunts' => $query
-          ->where('t.quote LIKE :keyword')
-          ->setParameter('keyword', '%'.$keyword.'%')
-          ->getQuery()
-          ->getResult()
+              ->where('t.quote LIKE :keyword')
+              ->orWhere('t.title LIKE :keyword')
+              ->setParameter('keyword', '%'.$keyword.'%')
+              ->getQuery()
+              ->getResult()
             ]);
         }
 
