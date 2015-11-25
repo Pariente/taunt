@@ -58,28 +58,35 @@ class DefaultController extends Controller
       }
     }
 
-        /**
-     * @Route("/search/{keyword}", name="search")
-     */
-        public function searchAction(Request $request, $keyword)
-        {
-          $form = $this->createFormBuilder()
-            ->add('Rechercher', 'text', ['label' => false ,'attr' => ['placeholder' => 'Rechercher']])
-            ->getForm();
+    /**
+ * @Route("/search/{keyword}", name="search")
+ */
+    public function searchAction(Request $request, $keyword)
+    {
+      $form = $this->createFormBuilder()
+        ->add('Rechercher', 'text', ['label' => false ,'attr' => ['placeholder' => 'Rechercher']])
+        ->getForm();
+      $form->handleRequest($request);
 
-          $em = $this->getDoctrine()->getManager();
-          $query = $em->getRepository("AppBundle:Taunt")->createQueryBuilder('t');
+      $em = $this->getDoctrine()->getManager();
+      $query = $em->getRepository("AppBundle:Taunt")->createQueryBuilder('t');
 
-          return $this->render('homepage.html.twig', [
-            'form' => $form->createView(),
-            'taunts' => $query
-              ->where('t.quote LIKE :keyword')
-              ->orWhere('t.title LIKE :keyword')
-              ->setParameter('keyword', '%'.$keyword.'%')
-              ->getQuery()
-              ->getResult()
-            ]);
-        }
+      if ($form->isValid()) {
+        $keyword = $form["Rechercher"]->getData();
+        return $this->redirectToRoute('search', ["keyword" => $keyword]);
+      }
+
+      return $this->render('homepage.html.twig', [
+        'form' => $form->createView(),
+        'taunts' => $query
+          ->where('t.quote LIKE :keyword')
+          ->orWhere('t.title LIKE :keyword')
+          ->orWhere('t.ref LIKE :keyword')
+          ->setParameter('keyword', '%'.$keyword.'%')
+          ->getQuery()
+          ->getResult()
+        ]);
+    }
 
         /**
      * @Route("/new", name="new")
