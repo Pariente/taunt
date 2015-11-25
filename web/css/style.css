@@ -150,6 +150,10 @@ a {
   vertical-align: -10px;
 }
 
+.share-button {
+  cursor: pointer
+}
+
 .text-center {
   text-align: center
 }
