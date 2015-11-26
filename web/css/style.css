@@ -332,6 +332,7 @@ textarea {
   padding: 0.5em;
   margin: 5px 0px 0px 0px;
   font-size: 0.875em;
+  font-family: AvenirNext;
   color: #fff;
   background-color: #8E44AD;
 
@@ -340,6 +341,12 @@ textarea {
 
   border: solid 1px #8E44AD;
   border-radius: 10px
+}
+
+.login-form {
+  max-width: 500px;
+  margin: auto;
+  font-size: 20px
 }
 
 @media (min-width: 768px) {

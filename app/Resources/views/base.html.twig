@@ -32,13 +32,13 @@
 
       <div class="footer text-center">
         <p>
+          <a href="{{ path('team') }}">La Taunt Team</a>
           {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('new') }}">Ajouter un quote</a>
             <a href="{{ path('logout') }}">Se d&eacute;connecter</a>
           {% else %}
             <a href="{{ path('login') }}">Login</a>
           {% endif %}
-          <a href="{{ path('team') }}">La Taunt Team</a>
         </p>
       </div>
       {% block javascripts %}{% endblock %}
