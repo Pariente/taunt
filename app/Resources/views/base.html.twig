@@ -27,7 +27,19 @@
           <a href="https://www.facebook.com/taunt.io/" target="_blank"><img src="{{ asset('facebook.svg') }}" alt="facebook" width="30px" height="30px" /></a>
         </div>
       </div>
+    
+<!-- admin features -->
+      {% if is_granted('ROLE_ADMIN') %}
+          <a href="/new">Ajouter un quote</a>
+          <a href="/logout">Se déconnecter</a>
+       {% else %}
+                <a href="/login">Login</a>
+          {% endif %}
+
       {% block body %}{% endblock %}
+
+
+
       {% block javascripts %}{% endblock %}
   </body>
 </html>
