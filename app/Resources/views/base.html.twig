@@ -8,12 +8,12 @@
     <meta property="og:url"           content="http://taunt.io/" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="Taunt.io" />
-    <meta property="og:description"   content="Les r&eacute;pliques les plus classes des films fran&ccedil;ais" />
+    <meta property="og:description"   content="Les r&eacute;pliques les plus classes de films cultes" />
     <meta property="og:image"         content="https://pbs.twimg.com/profile_images/669090330092937216/in1Cmlg2.png" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@taunt_io" />
     <meta name="twitter:title" content="Taunt.io" />
-    <meta name="twitter:description" content="Les r&eacute;pliques les plus classes des films fran&ccedil;ais" />
+    <meta name="twitter:description" content="Les r&eacute;pliques les plus classes de films cultes" />
     <meta name="twitter:image" content="https://pbs.twimg.com/profile_images/669090330092937216/in1Cmlg2.png" />
   </head>
   <body>
@@ -27,19 +27,20 @@
           <a href="https://www.facebook.com/taunt.io/" target="_blank"><img src="{{ asset('facebook.svg') }}" alt="facebook" width="30px" height="30px" /></a>
         </div>
       </div>
-    
-<!-- admin features -->
-      {% if is_granted('ROLE_ADMIN') %}
-          <a href="/new">Ajouter un quote</a>
-          <a href="/logout">Se déconnecter</a>
-       {% else %}
-                <a href="/login">Login</a>
-          {% endif %}
 
       {% block body %}{% endblock %}
 
-
-
+      <div class="footer text-center">
+        <p>
+          {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('new') }}">Ajouter un quote</a>
+            <a href="{{ path('logout') }}">Se d&eacute;connecter</a>
+          {% else %}
+            <a href="{{ path('login') }}">Login</a>
+          {% endif %}
+          <a href="{{ path('team') }}">La Taunt Team</a>
+        </p>
+      </div>
       {% block javascripts %}{% endblock %}
   </body>
 </html>

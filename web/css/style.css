@@ -166,6 +166,45 @@ a {
   cursor: pointer
 }
 
+.footer {
+  background-color: #FFFFFF;
+  font-size: 14px;
+  font-family: AvenirNextCondensed;
+  color: #B3ACA7;
+  position: fixed;
+  padding-bottom: 10px;
+  bottom: 0px;
+  width: 100%
+}
+
+.footer a:hover {
+  color: #8E44AD
+}
+
+/*** TEAM CSS ***/
+
+.user-card {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  overflow: hidden;
+  height: 200px;
+  width: 180px;
+}
+
+.user-name {
+  box-sizing: content-box;
+  color: #fff;
+  font-size: 16px;
+  margin-top: 150px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 0px 5px 5px 0px;
+  width: 100%
+}
+
+/*** ONE-PROPERTY CLASSES **/
+
 .text-center {
   text-align: center
 }
