@@ -140,6 +140,12 @@ a {
   margin-top: 1em
 }
 
+.delete-button {
+  float: right;
+  padding-top: 10px;
+  margin-right: -25px;
+}
+
 .taunt h2 {
   font-family: IntroScript
 }

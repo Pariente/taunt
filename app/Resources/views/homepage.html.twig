@@ -18,7 +18,13 @@
   <div id="results">
     {% if taunt is defined %}
     <div class="taunt text-center">
-      <h2>#{{ taunt.title }}</h2>
+      <h2>#{{ taunt.title }}
+      </h2>
+      {% if is_granted('ROLE_ADMIN') %}
+         <a href="{{ path('remove', {id:taunt.id}) }}" class="delete-button">
+           <img src="{{ asset('delete-white.svg') }}" alt="delete" width="30px" height="30px" />
+         </a>
+      {% endif %}
       <p>&laquo; {{ taunt.quote }} &raquo;</p>
       <ul class="taunt-bottom">
         <li class="taunt-ref">{{ taunt.ref }}</li>
@@ -36,9 +42,6 @@
         <source src="{{ asset('uploads/taunts/'~ taunt.path) }}" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
-      {% if is_granted('ROLE_ADMIN') %}
-         <a href="{{ path('remove', {id:taunt.id}) }}">Supprimer ce taunt</a>
-      {% endif %}
     {% endif %}
     <ul class="no-padding taunts-list">
       {% for taunt in taunts %}
