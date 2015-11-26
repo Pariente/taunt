@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Taunt.io - La Team
+{% endblock %}
+
+{% block body %}
+<div id="wrapper">
+  <div id="container">
+    <h3 class="text-center">Touche &agrave; un membre de ma clique.</h3>
+    <h3 class="text-center">Allez, clique !</h3>
+  </div>
+  <div id="results">
+    <ul class="taunts-list no-padding">
+      <li>
+        <div class="user-card inline-block" style="background: url('https://scontent-cdg2-1.xx.fbcdn.net/hphotos-prn2/v/t1.0-9/10734156_798647946857940_6664674370040018028_n.jpg?oh=b0baa09a2fc6dfb912f25f1d1f222e3e&oe=56E41F6D');">
+          <div class="user-name">
+            <p class="text-center">Louis Dian&eacute;</p>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="user-card inline-block" style="background: url('https://scontent-cdg2-1.xx.fbcdn.net/hphotos-prn2/v/t1.0-9/10301950_1537776719790832_6015855558377674114_n.jpg?oh=ccf246231d523a48a02c420c64fe5d5a&oe=56EDAD5B');">
+          <div class="user-name">
+            <p class="text-center">R&eacute;mi Lopes</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="footer">
+    <p><a href="{{ path('team') }}">La Taunt Team</a></p>
+  </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

@@ -8,12 +8,12 @@
     <meta property="og:url"           content="http://taunt.io/" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="Taunt.io" />
-    <meta property="og:description"   content="Les r&eacute;pliques les plus classes des films fran&ccedil;ais" />
+    <meta property="og:description"   content="Les r&eacute;pliques les plus classes de films cultes" />
     <meta property="og:image"         content="https://pbs.twimg.com/profile_images/669090330092937216/in1Cmlg2.png" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@taunt_io" />
     <meta name="twitter:title" content="Taunt.io" />
-    <meta name="twitter:description" content="Les r&eacute;pliques les plus classes des films fran&ccedil;ais" />
+    <meta name="twitter:description" content="Les r&eacute;pliques les plus classes de films cultes" />
     <meta name="twitter:image" content="https://pbs.twimg.com/profile_images/669090330092937216/in1Cmlg2.png" />
   </head>
   <body>
@@ -28,6 +28,9 @@
         </div>
       </div>
       {% block body %}{% endblock %}
+      <div class="footer text-center">
+        <p><a href="{{ path('team') }}">La Taunt Team</a></p>
+      </div>
       {% block javascripts %}{% endblock %}
   </body>
 </html>

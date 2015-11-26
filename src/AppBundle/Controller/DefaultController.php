@@ -13,10 +13,10 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+     public function indexAction(Request $request)
     {
       $form = $this->createFormBuilder()
-        ->add('Rechercher', 'text', ['label' => false ,'attr' => ['placeholder' => 'Rechercher']])
+        ->add('Rechercher', 'text', ['label' => false ,'attr' => ['placeholder' => 'Rechercher', 'autocomplete' => 'off']])
         ->getForm();
       $form->handleRequest($request);
 
@@ -30,8 +30,6 @@ class DefaultController extends Controller
       }
     }
 
-
-
     /**
      * @Route("/taunt/{id}", name="taunt")
      */
@@ -41,7 +39,7 @@ class DefaultController extends Controller
       $tauntToPlay = $this->getDoctrine()->getRepository("AppBundle:Taunt")->find($id);
 
       $form = $this->createFormBuilder()
-        ->add('Rechercher', 'text', ['label' => false ,'attr' => ['placeholder' => 'Rechercher']])
+        ->add('Rechercher', 'text', ['label' => false ,'attr' => ['placeholder' => 'Rechercher', 'autocomplete' => 'off']])
         ->getForm();
       $form->handleRequest($request);
 
@@ -59,12 +57,12 @@ class DefaultController extends Controller
     }
 
     /**
- * @Route("/search/{keyword}", name="search")
- */
+     * @Route("/search/{keyword}", name="search")
+     */
     public function searchAction(Request $request, $keyword)
     {
       $form = $this->createFormBuilder()
-        ->add('Rechercher', 'text', ['label' => false ,'attr' => ['placeholder' => 'Rechercher']])
+        ->add('Rechercher', 'text', ['label' => false ,'attr' => ['placeholder' => 'Rechercher', 'autocomplete' => 'off']])
         ->getForm();
       $form->handleRequest($request);
 
@@ -121,4 +119,11 @@ class DefaultController extends Controller
             )
           );
         }
-      }
+        /**
+         * @Route("/team", name="team")
+         */
+        public function teamAction(Request $request)
+        {
+            return $this->render('team.html.twig');
+        }
+}
