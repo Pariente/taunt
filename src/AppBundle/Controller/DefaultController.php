@@ -126,4 +126,20 @@ class DefaultController extends Controller
         {
             return $this->render('team.html.twig');
         }
+
+
+
+         /**
+     * @Route("/remove/{id}", name="remove")
+     */
+                 public function removeAction($id)
+         {
+           $quote = $this->getDoctrine()->getRepository("AppBundle:Taunt")->find($id);
+
+           $em = $this->getDoctrine()->getManager();
+           $em->remove($quote);
+           $em->flush();
+
+           return $this->redirectToRoute("homepage");
+         }
 }
