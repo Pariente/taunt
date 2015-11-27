@@ -8,4 +8,4 @@
 /vendor/
 !/vendor/autoload.php
 /web/bundles/
-/app/bootsrap.php.cache
+/app/bootstrap.php.cache
