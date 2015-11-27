@@ -2,18 +2,18 @@
 # Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
-database_host:     ec2-54-227-248-123.compute-1.amazonaws.com
-   database_port:     5432
-   database_name:     d7cgaldaih7hdb
-   database_user:     knxibcnuqcchdj
-   database_password: WpVvV4tyBPClqwpdEjSRpzIUSN
-   # You should uncomment this if you want use pdo_sqlite
-   # database_path: "%kernel.root_dir%/data.db3"
+    database_host:     eu-cdbr-west-01.cleardb.com
+    database_port:     null
+    database_name:     heroku_8aa73343d00903f
+    database_user:     b0c47eb137592b
+    database_password: dd8dd9fc
+    # You should uncomment this if you want use pdo_sqlite
+    # database_path: "%kernel.root_dir%/data.db3"
 
-   mailer_transport:  smtp
-   mailer_host:       127.0.0.1
-   mailer_user:       ~
-   mailer_password:   ~
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
