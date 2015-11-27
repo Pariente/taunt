@@ -44,7 +44,7 @@ h3 {
   font-size: 20px;
   color: #333333;
   letter-spacing: 2.33px;
-  line-height: 27px;
+  line-height: 27px
 }
 
 a {
@@ -67,6 +67,17 @@ a {
 
 #header-social img {
   margin: 0.5em 1em 0em 0em
+}
+
+.searchbar {
+  max-width: 400px;
+  margin: auto
+}
+
+.searchbar input {
+  font-size: 20px;
+  border-width: 0px 0px 2px 0px;
+  border-radius: 0px
 }
 
 #results {
@@ -108,13 +119,13 @@ a {
 .taunts-list li:nth-child(7n+3) {
   color: #27ae60
 }
-.taunts-list ul li:nth-child(7n+4) {
+.taunts-list li:nth-child(7n+4) {
   color: #f1c40f
 }
-.taunts-list ul li:nth-child(7n+5) {
+.taunts-list li:nth-child(7n+5) {
   color: #34495e
 }
-.taunts-list ul li:nth-child(7n+6) {
+.taunts-list li:nth-child(7n+6) {
   color: #333333
 }
 
@@ -125,7 +136,14 @@ a {
   color: #FFFFFF;
   font-family: AvenirNextCondensed;
   font-size: 18px;
-  padding: 0em 3em
+  padding: 0em 3em;
+  margin-top: 1em
+}
+
+.delete-button {
+  font-size: 12px;
+  width: 100%;
+  padding-bottom: 10px
 }
 
 .taunt h2 {
@@ -142,16 +160,82 @@ a {
 
 .taunt-ref {
   font-family: IntroScript;
-  text-align: left;
+  text-align: left
 }
 
 .taunt-share {
   text-align: right;
-  vertical-align: -10px;
+  vertical-align: -10px
 }
+
+.share-button {
+  cursor: pointer
+}
+
+.footer {
+  background-color: #FFFFFF;
+  font-size: 14px;
+  font-family: AvenirNextCondensed;
+  color: #B3ACA7;
+  position: fixed;
+  padding-bottom: 10px;
+  bottom: 0px;
+  width: 100%
+}
+
+.footer a {
+  padding-left: 15px;
+  padding-right: 15px
+}
+
+.footer a:hover {
+  color: #8E44AD
+}
+
+/*** TEAM CSS ***/
+
+.user-list {
+  font-family: IntroScript;
+  font-size: 22px;
+  color: #FFFFFF;
+  letter-spacing: 2.56px;
+  line-height: 27px;
+  list-style: none
+}
+
+.user-list li {
+  display: inline;
+  margin: 1em;
+  line-height: 2em
+}
+
+.user-card {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat;
+  border-radius: 15px;
+  overflow: hidden;
+  height: 170px;
+  width: 150px;
+}
+
+.user-name {
+  box-sizing: content-box;
+  color: #fff;
+  font-size: 16px;
+  margin-top: 130px;
+  background: rgba(0,0,0,0.8);
+  width: 100%
+}
+
+/*** ONE-PROPERTY CLASSES **/
 
 .text-center {
   text-align: center
+}
+
+.text-right {
+  text-align: right
 }
 
 .no-padding {
@@ -159,29 +243,29 @@ a {
 }
 
 .inline-block {
-  display: inline-block;
+  display: inline-block
 }
 
 /*** FORMS ***/
 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   color: #aca49c;
-  font-size: 0.875em;
+  font-size: 0.875em
 }
 
 input::-moz-placeholder, textarea::-moz-placeholder {
   color: #aca49c;
-  font-size: 0.875em;
+  font-size: 0.875em
 }
 
 input::placeholder, textarea::placeholder {
   color: #aca49c;
-  font-size: 0.875em;
+  font-size: 0.875em
 }
 
 input::-ms-placeholder, textarea::-ms-placeholder {
   color: #aca49c;
-  font-size: 0.875em;
+  font-size: 0.875em
 }
 
 header {
@@ -189,14 +273,14 @@ header {
   margin: 100px 0 25px 0;
   font-size: 2.3em;
   text-align: center;
-  letter-spacing: 7px;
+  letter-spacing: 7px
 }
 
 #newquote {
   position: relative;
   width: 70%;
   margin: 10px auto;
-  font-size: 1.1em;
+  font-size: 1.1em
 }
 
 input {
@@ -218,7 +302,7 @@ input {
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out
 }
 
 #form_file {
@@ -249,7 +333,7 @@ textarea {
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out
 }
 
 #form_submit {
@@ -258,6 +342,7 @@ textarea {
   padding: 0.5em;
   margin: 5px 0px 0px 0px;
   font-size: 0.875em;
+  font-family: AvenirNext;
   color: #fff;
   background-color: #8E44AD;
 
@@ -266,6 +351,12 @@ textarea {
 
   border: solid 1px #8E44AD;
   border-radius: 10px
+}
+
+.login-form {
+  max-width: 500px;
+  margin: auto;
+  font-size: 20px
 }
 
 @media (min-width: 768px) {
