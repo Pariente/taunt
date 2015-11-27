@@ -20,11 +20,6 @@
     <div class="taunt text-center">
       <h2>#{{ taunt.title }}
       </h2>
-      {% if is_granted('ROLE_ADMIN') %}
-         <a href="{{ path('remove', {id:taunt.id}) }}" class="delete-button">
-           <img src="{{ asset('delete-white.svg') }}" alt="delete" width="30px" height="30px" />
-         </a>
-      {% endif %}
       <p>&laquo; {{ taunt.quote }} &raquo;</p>
       <ul class="taunt-bottom">
         <li class="taunt-ref">{{ taunt.ref }}</li>
@@ -40,6 +35,13 @@
           </a>
         </li>
       </ul>
+      {% if is_granted('ROLE_ADMIN') %}
+      <div class="text-right delete-button">
+         <a href="{{ path('remove', {id:taunt.id}) }}">
+           Supprimer ce taunt.
+         </a>
+      </div>
+      {% endif %}
     </div>
       <audio autoplay>
         <source src="{{ asset('uploads/taunts/'~ taunt.path) }}" type="audio/mpeg">
