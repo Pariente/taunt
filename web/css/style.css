@@ -62,7 +62,8 @@ a {
 }
 
 #header-social {
-  float: right
+  float: right;
+  display: inline-block
 }
 
 #header-social img {
