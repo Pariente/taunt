@@ -64,5 +64,26 @@
   <script type="text/javascript" src="{{ asset('zeroClipboard/ZeroClipboard.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/tipped.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+  <script>
+  var facebookShare = document.querySelector('[data-js="facebook-share"]');
+  var twitterShare = document.querySelector('[data-js="twitter-share"]');
+  var client = new ZeroClipboard(document.getElementById("copy-button"));
+
+  // Facebook
+  facebookShare.onclick = function(e) {
+  e.preventDefault();
+  var facebookWindow = window.open('http://www.facebook.com/sharer/sharer.php?u=' + document.URL + '&title=Taunt', 'facebook-popup', 'height=350,width=600');
+  if(facebookWindow.focus) { facebookWindow.focus(); }
+    return false;
+  }
+
+  // Twitter
+  twitterShare.onclick = function(e) {
+    e.preventDefault();
+    var twitterWindow = window.open('https://twitter.com/intent/tweet?url=' + document.URL + '&hashtags=taunt&via=taunt_io&text={{ taunt.title }}', 'twitter-popup', 'height=350,width=600');
+    if(twitterWindow.focus) { twitterWindow.focus(); }
+      return false;
+    }
+  </script>
   {% endif %}
 {% endblock %}
