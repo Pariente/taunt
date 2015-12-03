@@ -36,10 +36,13 @@
         </li>
       </ul>
       {% if is_granted('ROLE_ADMIN') %}
-      <div class="text-right delete-button">
+      <div class="text-right admin-button">
+      <a href="{{ path('publish', {id:taunt.id}) }}">Valider.</a> 
          <a href="{{ path('remove', {id:taunt.id}) }}">
-               <a href="{{ path('publish', {id:taunt.id}) }}">Valider</a> 
-           Supprimer ce taunt.
+           Supprimer.
+         </a>
+          <a href="{{ path('edit', {id:taunt.id}) }}">
+           &Eacute;diter.
          </a>
       </div>
       {% endif %}

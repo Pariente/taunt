@@ -36,6 +36,7 @@
         <p>
           <a href="{{ path('team') }}">La Taunt Team</a>
           {% if is_granted('ROLE_ADMIN') %}
+          <a href="{{ path('moderation') }}">Mod&eacute;ration</a>
             <a href="{{ path('new') }}">Ajouter un quote</a>
             <a href="{{ path('logout') }}">Se d&eacute;connecter</a>
           {% else %}
