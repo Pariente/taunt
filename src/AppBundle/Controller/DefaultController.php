@@ -132,7 +132,7 @@ class DefaultController extends Controller
          /**
      * @Route("/remove/{id}", name="remove")
      */
-                 public function removeAction($id)
+        public function removeAction($id)
          {
            $quote = $this->getDoctrine()->getRepository("AppBundle:Taunt")->find($id);
 
@@ -141,5 +141,37 @@ class DefaultController extends Controller
            $em->flush();
 
            return $this->redirectToRoute("homepage");
+         }
+
+         /**
+     * @Route("/edit/{id}", name="edit")
+     */
+        public function editAction($id, Request $request)
+         {
+           $em = $this->getDoctrine()->getManager();
+           $taunt = $em->getRepository("AppBundle:Taunt")->find($id);
+           $form = $this->createFormBuilder($taunt)
+           ->add('title', 'text',  array('label' => 'Titre'))
+           ->add('ref', 'text',  array('label' => 'Film'))
+           ->add('quote', 'textarea',  array('label' => 'Citation'))
+           ->add('submit', 'submit',  array('label' => 'Publier'))
+           ->getForm();
+
+           $form->handleRequest($request);
+
+           if ($form->isValid()) {
+             $editedTaunt = $form->getData();
+             $taunt->setTitle($editedTaunt->getTitle());
+             $taunt->setQuote($editedTaunt->getQuote());
+             $taunt->setRef($editedTaunt->getRef());
+             $em->flush();
+
+             return $this->redirectToRoute('homepage');
+           }
+
+           return $this->render('edit.html.twig', array(
+             'form' => $form->createView()
+             )
+           );
          }
 }

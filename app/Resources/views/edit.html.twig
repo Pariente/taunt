@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Taunt.io - &Eacute;diter Taunt
+{% endblock %}
+
+{% block body %}
+<div id="wrapper">
+	<div id="container">
+    <h3 class="text-center">&Eacute;diter un Taunt</h3>
+  </div>
+
+		<form id="newquote" action="" method="post" {{ form_enctype(form) }}>
+			{{ form_start(form) }}
+			{{ form_row(form.title) }}
+			{{ form_rest(form) }}
+			{{ form_end(form) }}
+		</form>
+</div>
+</div>
+
+{% endblock %}
