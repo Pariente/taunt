@@ -25,17 +25,37 @@ class DefaultController extends Controller
         return $this->redirectToRoute('search', ["keyword" => $keyword]);
       }
       else {
-        $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findAll();
+        $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findLasts();
         return $this->render('homepage.html.twig', ['taunts' => $taunts, 'form' => $form->createView()]);
       }
     }
 
-    /**
-     * @Route("/taunt/{id}", name="taunt")
+      /**
+     * @Route("/moderation", name="moderation")
      */
-    public function playTauntAction(Request $request, $id)
+     public function moderationAction(Request $request)
     {
-      $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findAll();
+      $form = $this->createFormBuilder()
+        ->add('Rechercher', 'text', ['label' => false ,'attr' => ['placeholder' => 'Rechercher', 'autocomplete' => 'off']])
+        ->getForm();
+      $form->handleRequest($request);
+
+      if ($form->isValid()) {
+        $keyword = $form["Rechercher"]->getData();
+        return $this->redirectToRoute('search', ["keyword" => $keyword]);
+      }
+      else {
+        $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findUnpublished();
+        return $this->render('moderation.html.twig', ['taunts' => $taunts, 'form' => $form->createView()]);
+      }
+    }
+
+        /**
+     * @Route("/moderation/{id}", name="moderate")
+     */
+    public function playModerateAction(Request $request, $id)
+    {
+      $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findUnpublished();
       $tauntToPlay = $this->getDoctrine()->getRepository("AppBundle:Taunt")->find($id);
 
       $form = $this->createFormBuilder()
@@ -48,7 +68,46 @@ class DefaultController extends Controller
         return $this->redirectToRoute('search', ["keyword" => $keyword]);
       }
       else {
-        $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findAll();
+        $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findUnpublished();
+        return $this->render('moderation.html.twig', [
+          'taunts' => $taunts,
+          'taunt' => $tauntToPlay,
+          'form' => $form->createView()]);
+      }
+    }
+
+
+        /**
+     * @Route("/publish/{id}", name="publish")
+     */
+        public function publishAction($id)
+        {
+         $quote = $this->getDoctrine()->getRepository("AppBundle:Taunt")->find($id);
+         $quote->publish();
+         $this->getDoctrine()->getManager()->flush();
+
+         return $this->redirectToRoute("moderation");
+       }
+
+    /**
+     * @Route("/taunt/{id}", name="taunt")
+     */
+    public function playTauntAction(Request $request, $id)
+    {
+      $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findLasts();
+      $tauntToPlay = $this->getDoctrine()->getRepository("AppBundle:Taunt")->find($id);
+
+      $form = $this->createFormBuilder()
+        ->add('Rechercher', 'text', ['label' => false ,'attr' => ['placeholder' => 'Rechercher', 'autocomplete' => 'off']])
+        ->getForm();
+      $form->handleRequest($request);
+
+      if ($form->isValid()) {
+        $keyword = $form["Rechercher"]->getData();
+        return $this->redirectToRoute('search', ["keyword" => $keyword]);
+      }
+      else {
+        $taunts = $this->getDoctrine()->getRepository("AppBundle:Taunt")->findLasts();
         return $this->render('homepage.html.twig', [
           'taunts' => $taunts,
           'taunt' => $tauntToPlay,
@@ -119,6 +178,7 @@ class DefaultController extends Controller
             )
           );
         }
+
         /**
          * @Route("/team", name="team")
          */

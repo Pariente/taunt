@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Taunt.io - Les r&eacute;pliques les plus classes de films cultes
+{% endblock %}
+
+{% block body %}
+<div id="wrapper">
+  <div id="container">
+    <h3 class="text-center">Les r&eacute;pliques les plus classes de films cultes.</h3>
+    <h3 class="text-center">En PHP, ma gueule.</h3>
+    <div class="searchbar">
+      {{ form_start(form) }}
+      {{ form_widget(form) }}
+      {{ form_end(form) }}
+    </div>
+  </div>
+  <div id="results">
+    {% if taunt is defined %}
+    <div class="taunt text-center">
+      <h2>#{{ taunt.title }}
+      </h2>
+      <p>&laquo; {{ taunt.quote }} &raquo;</p>
+      <ul class="taunt-bottom">
+        <li class="taunt-ref">{{ taunt.ref }}</li>
+        <li class="taunt-share">
+          <a data-js="twitter-share" class="share-button">
+            <img src="{{ asset('twitter-white.svg') }}" alt="twitter" width="30px" height="30px" />
+          </a>
+          <a data-js="facebook-share" class="share-button">
+            <img src="{{ asset('facebook-white.svg') }}" alt="facebook" width="30px" height="30px" />
+          </a>
+          <a class="share-button">
+            <img id="copy-button" src="{{ asset('share-white.svg') }}" alt="link" width="30px" height="30px"/>
+          </a>
+        </li>
+      </ul>
+      {% if is_granted('ROLE_ADMIN') %}
+      <div class="text-right delete-button">
+         <a href="{{ path('remove', {id:taunt.id}) }}">
+               <a href="{{ path('publish', {id:taunt.id}) }}">Valider</a> 
+           Supprimer ce taunt.
+         </a>
+      </div>
+      {% endif %}
+    </div>
+      <audio autoplay>
+        <source src="{{ asset('uploads/taunts/'~ taunt.path) }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    {% endif %}
+    <ul class="no-padding taunts-list">
+      {% for taunt in taunts %}
+        {{ include("default/_moderatetaunt.html.twig") }}
+      {% endfor %}
+    </ul>
+  </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  {% if taunt is defined %}
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="{{ asset('zeroClipboard/ZeroClipboard.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/tipped.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+  {% endif %}
+{% endblock %}
