@@ -9,3 +9,4 @@
 !/vendor/autoload.php
 /web/bundles/
 /app/bootstrap.php.cache
+/idea/
