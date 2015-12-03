@@ -10,4 +10,21 @@ namespace AppBundle\Entity;
  */
 class TauntRepository extends \Doctrine\ORM\EntityRepository
 {
+		public function findLasts() {
+
+		return $queryBuilder = $this->createQueryBuilder('i')
+		->where('i.published = true')
+		->orderBy("i.createdAt","DESC")
+		->getQuery()
+		->getResult();
+	}
+
+			public function findUnpublished() {
+
+		return $queryBuilder = $this->createQueryBuilder('i')
+		->where('i.published = false')
+		->orderBy("i.createdAt","DESC")
+		->getQuery()
+		->getResult();
+	}
 }

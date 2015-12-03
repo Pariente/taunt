@@ -41,3 +41,6 @@ security:
     access_control:
         # require ROLE_ADMIN for /admin*
         - { path: ^/new, roles: ROLE_ADMIN }
+        - { path: ^/moderation, roles: ROLE_ADMIN }
+        - { path: ^/moderate, roles: ROLE_ADMIN }
+        - { path: ^/publish, roles: ROLE_ADMIN }

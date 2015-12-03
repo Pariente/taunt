@@ -56,6 +56,13 @@ class Taunt
      */
     private $createdAt;
 
+    /**
+     * @var \published
+     *
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published;
+
         /**
      * @Assert\File(maxSize="6000000")
      */
@@ -65,6 +72,7 @@ class Taunt
 
 
          public function __construct() {
+        $this->published = false;
           $this->createdAt = new \DateTime();
       }
     /**
@@ -219,6 +227,18 @@ class Taunt
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+           /**
+     * publish
+     *
+     * @return boolean
+     */
+       public function publish()
+       {
+        $this->published = true;
+
+        return $this;
     }
 
 
